@@ -16,7 +16,7 @@ def autocomplete():
     body = req.args.get('body')
     words = int(req.args.get('words')) if 'words' in req.args else 1
     response = learn.predict(body, words, temperature=0.75)
-    return response
+    return { "input": body, "words": words, "output": response }
     
 if __name__ == "__main__":
-    app.run(environ.get('PORT'))
+    app.run(host='0.0.0.0')
