@@ -3,10 +3,12 @@ from fastai import *
 from fastai.text import *
 from flask_api import FlaskAPI
 from flask import request as req
+import os 
 
 defaults.device = torch.device('cpu')
 
-path = Path('./models/autocomplete/trump')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+path = Path(dir_path + '/models/autocomplete/trump')
 learn = load_learner(path)
 
 app = FlaskAPI(__name__)
